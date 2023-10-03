@@ -6,6 +6,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import Settings from '../../Screens/Settings'
 import Notifications from '../../Screens/Notifications'
 import { Ionicons } from '@expo/vector-icons'
+import TweetDetail from '../../Screens/TweetDetail'
 
 // Tab Bottom
 const Tab = createBottomTabNavigator()
@@ -17,7 +18,7 @@ const TabGroup = () => {
             screenOptions={({ route, navigation }) => ({
                 tabBarIcon: ({ color, focused, size }) => {
                     let iconName;
-                    if (route.name === 'Feed') {
+                    if (route.name === 'HomeStackGroup') {
                         iconName = focused ? 'home' : 'home-outline'
                     }
                     else if (route.name === 'Notifications') {
@@ -34,7 +35,7 @@ const TabGroup = () => {
             })}
 
         >
-            <Tab.Screen name='Feed' component={Feed} />
+            <Tab.Screen name='HomeStackGroup' component={HomeStackGroup} options ={{headerShown: false}} />
             <Tab.Screen name='Notifications' component={Notifications} />
             <Tab.Screen name='Settings' component={Settings} />
         </Tab.Navigator>
@@ -48,7 +49,8 @@ const HomeStack = createNativeStackNavigator()
 const HomeStackGroup = () => {
     return (
         <HomeStack.Navigator>
-            <HomeStack.Screen />
+            <HomeStack.Screen name='Feed' component={Feed} />
+            <HomeStack.Screen name='TweetDetail' component={TweetDetail}  />
         </HomeStack.Navigator>
     )
 }
